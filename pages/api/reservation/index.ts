@@ -8,6 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const reservations = await db.collection("reservations").find({}).toArray();
     res.status(200);
     res.json({ reservations });
+    return reservations;
   } catch (error) {
     res.status(500);
     res.json({ error: "Unable to get reservations" });

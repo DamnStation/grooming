@@ -1,6 +1,6 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const client = new MongoClient(process.env.local.dbUrl, {
+const client = new MongoClient(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1,
