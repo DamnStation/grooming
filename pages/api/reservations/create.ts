@@ -1,4 +1,3 @@
-import { InsertOneResult } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { connect } from "../../../utils/database";
 
@@ -18,17 +17,15 @@ export default async function Create(
   try {
     const { db } = await connect();
     const { name, email, phone, date, time, pets }: Reservation = req.body;
-    const result: InsertOneResult<Document> = await db
-      .collection("reservations")
-      .insertOne({
-        name,
-        email,
-        phone,
-        date,
-        time,
-        pets,
-        createdAt: new Date(),
-      } as Reservation);
+    const result = await db.collection("reservations").insertOne({
+      name,
+      email,
+      phone,
+      date,
+      time,
+      pets,
+      createdAt: new Date(),
+    } as Reservation);
 
     res.status(201);
     res.json({ reservation: result });
