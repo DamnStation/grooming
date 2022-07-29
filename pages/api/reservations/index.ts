@@ -2,7 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { connect } from "../../../utils/database";
 
 //Get all reservations
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function GetAll(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
     const { db } = await connect();
     const reservations = await db.collection("reservations").find({}).toArray();
@@ -13,4 +16,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(500);
     res.json({ error: "Unable to get reservations" });
   }
-};
+}
